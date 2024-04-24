@@ -1,12 +1,16 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Grid, Typography } from "@mui/material";
+import { ProtectedRoutAuth } from "../../ui/components/ProtectedRoutAuth";
+//import { useSelector } from "react-redux";
+
 
 export const LayoutAuth = () => {
   const location = useLocation();
+  //const {status} = useSelector(state => state.auth)
 
   return (
     <>
-      <Grid
+      <Grid        
         container
         spacing={0}
         direction="column"
@@ -14,17 +18,22 @@ export const LayoutAuth = () => {
         justifyContent="center"
         sx={{ minHeight: "100vh", backgroundColor: "primary.main", padding: 4 }}
       >
+        <ProtectedRoutAuth  >
         <Grid
           item
           className="box-shadow"
           xs={3}
           sx={{ backgroundColor: "white", padding: 3, borderRadius: 2, width: { sm: 450 } }}
         >
+
           <Typography variant="h5" sx={{ mb: 1 }}>
             {location.pathname === "/auth/register" ? "Register" : "Login"}
           </Typography>
           <Outlet />
         </Grid>
+        </ProtectedRoutAuth>
+
+        
       </Grid>
     </>
   );

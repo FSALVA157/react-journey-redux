@@ -1,0 +1,2 @@
+export { journalSlice } from "./journalSlice";
+
